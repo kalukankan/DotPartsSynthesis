@@ -50,8 +50,16 @@ namespace DotPartsSynthesis.services
 
                 while (bruteForceManager.HasNext())
                 {
-                    // 画像合成
+                    // 画像合成対象取得
                     IList<IDotImage> targets = bruteForceManager.Next();
+
+                    // 画像読み込み
+                    foreach (IDotImage item in targets)
+                    {
+                        item.Read();
+                    }
+
+                    // 画像合成
                     IDotImage image = targets.First();
                     for (int i = 1; i < targets.Count; i++)
                     {
@@ -61,6 +69,12 @@ namespace DotPartsSynthesis.services
                     // 画像出力
                     image.SetDirectory(AppConfig.ExportDir);
                     image.Write();
+
+                    // 画像破棄
+                    foreach (IDotImage item in targets)
+                    {
+                        item.Dispose();
+                    }
                 }
 
                 Logger.Info(Properties.MessageResources.Info_DotImageService_SuccessSynthesis);
@@ -78,10 +92,7 @@ namespace DotPartsSynthesis.services
                     {
                         foreach(IDotImage image in parts)
                         {
-                            if(image != null)
-                            {
-                                image.Dispose();
-                            }
+                            image.Dispose();
                         }
                     }
                 }
@@ -99,7 +110,6 @@ namespace DotPartsSynthesis.services
             foreach (FileInfo fileInfo in fileInfos)
             {
                 IDotImage image = new DotImage(fileInfo);
-                image.Read();
                 images.Add(image);
             }
             return images;

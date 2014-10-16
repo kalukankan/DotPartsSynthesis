@@ -119,7 +119,14 @@ namespace DotPartsSynthesis.models
         /// </summary>
         public void Dispose()
         {
-            Image.Dispose();
+            if (Image != null)
+            {
+                try { Image.Dispose(); }
+                catch (Exception e)
+                {
+                    Logger.Debug(Properties.MessageResources.Debug_DotImage_FailedDisposeImage, new string[] { this.FullName }, e);
+                }
+            }
         }
     }
 }

@@ -61,6 +61,15 @@ namespace DotPartsSynthesis.Properties {
         }
         
         /// <summary>
+        ///   画像の破棄処理に失敗しました。値：{0} に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Debug_DotImage_FailedDisposeImage {
+            get {
+                return ResourceManager.GetString("Debug_DotImage_FailedDisposeImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   App.configのdotoPartsDirsには2つ以上の存在するフォルダを設定してください。 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string Error_AppConfig_DotPartsDirsUnder2 {
