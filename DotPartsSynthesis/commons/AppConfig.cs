@@ -81,7 +81,7 @@ namespace DotPartsSynthesis.commons
         {
             get
             {
-                if (dotPartsDirs != null) return dotPartsExtension;
+                if (dotPartsExtension != null) return dotPartsExtension;
 
                 dotPartsExtension = ConfigurationManager.AppSettings[AppConst.AppConfigKey.DOT_PARTS_EXTENSION];
                 return dotPartsExtension;
